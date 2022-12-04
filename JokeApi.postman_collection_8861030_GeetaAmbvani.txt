@@ -1,0 +1,633 @@
+{
+	"info": {
+		"_postman_id": "c136c717-a787-461a-b163-204ec7307144",
+		"name": "JokeApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22404715"
+	},
+	"item": [
+		{
+			"name": "Hello World Example",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have 200 response\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Second Test\", function () {",
+							"    pm.response.to.have.body('\"hello world\"');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://backend.127-0-0-1.sslip.io/",
+					"protocol": "http",
+					"host": [
+						"backend",
+						"127-0-0-1",
+						"sslip",
+						"io"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Jokes from Joke list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test 1\r",
+							"pm.test(\"verify the status response of the API\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Test 2\r",
+							"pm.test(\"To validate the joke contains string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"content\").to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// Test 3\r",
+							"pm.test(\"To validate the Joke response contains 'isDeleted' \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"isDeleted\");\r",
+							"});\r",
+							"  \r",
+							"//Test 4\r",
+							"pm.test(\"To validate the Joke response contains 'content' \", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"content\");\r",
+							"});\r",
+							"\r",
+							"//Test 5\r",
+							"pm.test(\"Validate the Performance of API \", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"//Test 6\r",
+							"pm.test(\"Verify Content-Type header is present\", () => {\r",
+							"  pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"//Test 7\r",
+							"pm.test(\"verify content-type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"//Test 8\r",
+							"pm.test(\"Verifying a particular string in the response body\", function() {\r",
+							"pm.expect(pm.response.text()).include(\"Plagiarism!\");  \r",
+							"}  );   \r",
+							"\r",
+							"//Test 9\r",
+							"pm.test(\"Verify Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Test 10\r",
+							" pm.test(\"Verifying Cookies do not exist\", function() \r",
+							" {\r",
+							"\"pm.expect(pm.cookies.has(\\\"session id\\\")).to.be.false;\"\r",
+							"}  );  \r",
+							"\r",
+							"//Test 11\r",
+							"pm.test(\"Verifying Response Body does not show error\", function() {\r",
+							"pm.response.to.not.have.body(\"error\") \r",
+							"});\r",
+							"\r",
+							"// Test 12\r",
+							"pm.test(\"Verifying the response body does not show any jokes as user did not create any joke in the list\",function(){\r",
+							"//Assuming the code has wriiten in such a way that it validates there should not be any joke if user did not created it\r",
+							"// Failed status as it contains already a joke which is not created by user in the list\r",
+							"});\r",
+							"\r",
+							"//Test 13\r",
+							"pm.test(\"Verifying the response body does not contain deleted jokes\",function(){\r",
+							"//Assuming the code has wriiten in such a way that it does not show deleted jokes in joke list\r",
+							"});\r",
+							"\r",
+							"// Test 14\r",
+							"pm.test(\"Verifying the response body does not show null jokes in the list\",function(){\r",
+							"//Assuming the code has wriiten in such a way that it does not show null jokes in joke list\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"//Test 15\r",
+							"pm.test(\"Verifying the joke should be delete permanently from database \",function(){\r",
+							"//Assuming the code has wriiten in such a way that it validates joke should be deleted permanently from UI and database as user deleted it by using delete request\r",
+							"});\r",
+							"\r",
+							"//Test 16\r",
+							"pm.test(\"Verifying the flag of deleted joke is true \",function(){\r",
+							"//Assuming the code has wriiten in such a way that it validates deleted joke's flag is true if user deleted the joke by using delete request\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://backend.127-0-0-1.sslip.io/Jokes",
+					"protocol": "http",
+					"host": [
+						"backend",
+						"127-0-0-1",
+						"sslip",
+						"io"
+					],
+					"path": [
+						"Jokes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test 1\r",
+							"pm.test(\"Joke created successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Test 2\r",
+							"pm.test(\"Verify the success message in joke API response body\", function () {\r",
+							"    pm.response.to.have.body('\"success\"');\r",
+							"});\r",
+							"\r",
+							"//Test 3\r",
+							"pm.test(\"verify the status response of the API\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Test 4\r",
+							"pm.test(\"Verifying the update request is successful if uuid is valid and content is not null\", function () {\r",
+							"    pm.response.to.have.body('\"success\"');\r",
+							"});\r",
+							"\r",
+							"//Test 5\r",
+							"pm.test(\"Validate the Performance of API \", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"//Test 6\r",
+							"pm.test(\"Verify Content-Type header is present\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"//Test 7\r",
+							"pm.test(\"verify content-type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"//Test 8\r",
+							"pm.test(\"Verify Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Test 9\r",
+							"pm.test(\"Verifying Cookies do not exist\", function () {\r",
+							"    \"pm.expect(pm.cookies.has(\\\"session id\\\")).to.be.false;\"\r",
+							"});\r",
+							"\r",
+							"//Test 10\r",
+							"pm.test(\"Verifying Response Body does not show error\", function () {\r",
+							"    pm.response.to.not.have.body(\"error\")\r",
+							"});\r",
+							"\r",
+							"//Test 11\r",
+							"pm.test(\"Validate the failed message in response body if content is missing in request body \", function () {\r",
+							"    //assuming that code is written in such a way that it validates the content is provided with request or not\r",
+							"    //fail the case with proper response (400 category) if uuid has null value\r",
+							"    //status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 12\r",
+							"pm.test(\"Validate the failed message in response body if content is blank in request body \", function () {\r",
+							"    //assuming that code is written in such a way that it validates the content is null or not\r",
+							"    //fail the case with proper response (400 category) if uuid has null value\r",
+							"    //status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 13\r",
+							"pm.test(\"Validate the failed message in response body if content is already exists in the joke list \", function () {\r",
+							"    //assuming that code is written in such a way that it validates the content is already present in the list or not\r",
+							"    //fail the case with proper response (400 category) if uuid has null value\r",
+							"    //status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 14\r",
+							"pm.test(\"Validate the failed message in response body if content is very short \", function () {\r",
+							"    //assuming that code is written in such a way that it validates character length of content should not below 10 characters\r",
+							"    //fail the case with proper response (400 category) if uuid has null value\r",
+							"    //status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 15\r",
+							"pm.test(\"Validate the failed message in response body if content is very long\", function () {\r",
+							"    //assuming that code is written in such a way that it validates character length of content should not exceed more than 50 characters\r",
+							"    //fail the case with proper response (400 category) if uuid has null value\r",
+							"    //status : failed\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"People are flying like birds\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://backend.127-0-0-1.sslip.io/Jokes",
+					"protocol": "http",
+					"host": [
+						"backend",
+						"127-0-0-1",
+						"sslip",
+						"io"
+					],
+					"path": [
+						"Jokes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit/ update jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Test 1\r",
+							"pm.test(\"joke updated successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Test 2\r",
+							"pm.test(\"Verifying the success message in response body\", function () {\r",
+							"    pm.response.to.have.body('\"success\"');\r",
+							"});\r",
+							"\r",
+							"//Test 3\r",
+							"pm.test(\"Verifying the update request is successful if uuid is valid and content is not null\", function () {\r",
+							"    pm.response.to.have.body('\"success\"');\r",
+							"});\r",
+							"\r",
+							"//Test 4\r",
+							"pm.test(\"Validate the Performance of API \", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"//Test 5\r",
+							"pm.test(\"Verify Content-Type header is present\", () => {\r",
+							"  pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"//Test 6\r",
+							"pm.test(\"verify content-type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"//Test 7\r",
+							"pm.test(\"Verify Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Test 8\r",
+							" pm.test(\"Verifying Cookies do not exist\", function() \r",
+							" {\r",
+							"\"pm.expect(pm.cookies.has(\\\"session id\\\")).to.be.false;\"\r",
+							"}  );  \r",
+							"\r",
+							"//Test 9\r",
+							"pm.test(\"Verifying Response Body does not show error\", function() {\r",
+							"pm.response.to.not.have.body(\"error\") \r",
+							"});\r",
+							"\r",
+							"//Test 10\r",
+							"pm.test(\"Validate the updation failed message in response body if uuid is missing in request body\", function(){\r",
+							"//assuming that code is written in such a way that it validates the uuid is provided with request or  not\r",
+							"//fail the case with proper response (400 category) if uuid is not provided with request\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 11\r",
+							"pm.test(\"Validate the updation failed message in response body if uuid is in invalid format\", function(){\r",
+							"//assuming that code is written in such a way that it validates the uuid is in correct format or not\r",
+							"//fail the case with proper response (400 category) if uuid is in invalid format\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 12\r",
+							"pm.test(\"Validate the updation failed message in response body if uuid is null \", function(){\r",
+							"//assuming that code is written in such a way that it validates the uuid is null or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 13\r",
+							"pm.test(\"Validate the updation failed message in response body if provided uuid doesn't exist  \", function(){\r",
+							"//assuming that code is written in such a way that it validates the provided uuid is exist in the list or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 14\r",
+							"pm.test(\"Validate the updation failed message in response body if valid but already deleted  uuid provided by user \", function(){\r",
+							"//assuming that code is written in such a way that it validates the provided uuid is already deleted or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 15\r",
+							"pm.test(\"Validate the updation failed message in response body if uuid is invalid  \", function(){\r",
+							"//assuming that code is written in such a way that it validates the uuid should not accept anything (like special character)\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 16\r",
+							"pm.test(\"Validate the updation failed message in response body if content is missing in request body \", function(){\r",
+							"//assuming that code is written in such a way that it validates the content is provided with request or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 17\r",
+							"pm.test(\"Validate the updation failed message in response body if content is blank in request body \", function(){\r",
+							"//assuming that code is written in such a way that it validates the content is null or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 18\r",
+							"pm.test(\"Validate the updation failed message in response body if content is already exists in the joke list \", function(){\r",
+							"//assuming that code is written in such a way that it validates the content is already present in the list or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 19\r",
+							"pm.test(\"Validate the updation failed message in response body if content is very short \", function(){\r",
+							"//assuming that code is written in such a way that it validates character length of content should not below 10 characters\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"//Test 20\r",
+							"pm.test(\"Validate the updation failed message in response body if content is very long\", function(){\r",
+							"//assuming that code is written in such a way that it validates character length of content should not exceed more than 50 characters\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uuid\": \"9ec60728-477-0b14-4487-aa23-9ad9c034ebac\",\r\n    \"content\": \"People are birds\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://backend.127-0-0-1.sslip.io/Jokes",
+					"protocol": "http",
+					"host": [
+						"backend",
+						"127-0-0-1",
+						"sslip",
+						"io"
+					],
+					"path": [
+						"Jokes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test 1\r",
+							"pm.test(\"Joke deleted successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test 2\r",
+							"pm.test(\"Verifying the success message in response body\", function () {\r",
+							"    pm.response.to.have.body('\"success\"');\r",
+							"});\r",
+							"\r",
+							"// Test 3\r",
+							"pm.test(\"Verifying the delete request is successful if uuid is valid\", function () {\r",
+							"    pm.response.to.have.body('\"success\"');\r",
+							"});\r",
+							"\r",
+							"// Test 4\r",
+							"pm.test(\"Validate the Performance of API \", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"// Test 5\r",
+							"pm.test(\"Verify Content-Type header is present\", () => {\r",
+							"  pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"// Test 6\r",
+							"pm.test(\"verify content-type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"// Test 7\r",
+							"pm.test(\"Verify Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"// Test 8\r",
+							" pm.test(\"Verifying Cookies do not exist\", function() \r",
+							" {\r",
+							"\"pm.expect(pm.cookies.has(\\\"session id\\\")).to.be.false;\"\r",
+							"}  );  \r",
+							"\r",
+							"// Test 9\r",
+							"pm.test(\"Verifying Response Body does not show error\", function() {\r",
+							"pm.response.to.not.have.body(\"error\") \r",
+							"});\r",
+							"\r",
+							"// Test 10\r",
+							"pm.test(\"Validate the failed message in response body if uuid is missing in request body\", function(){\r",
+							"//assuming that code is written in such a way that it validates the uuid is provided with request or  not\r",
+							"//fail the case with proper response (400 category) if uuid is not provided with request\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"// Test 11\r",
+							"pm.test(\"Validate the failed message in response body if uuid is in invalid format\", function(){\r",
+							"//assuming that code is written in such a way that it validates the uuid is in correct format or not\r",
+							"//fail the case with proper response (400 category) if uuid is in invalid format\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"// Test 12\r",
+							"pm.test(\"Validate the failed message in response body if uuid is null \", function(){\r",
+							"//assuming that code is written in such a way that it validates the uuid is null or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"// Test 13\r",
+							"pm.test(\"Validate the failed message in response body if provided uuid doesn't exist  \", function(){\r",
+							"//assuming that code is written in such a way that it validates the provided uuid is exist in the list or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"// Test 14\r",
+							"pm.test(\"Validate the failed message in response body if valid but already deleted  uuid provided by user \", function(){\r",
+							"//assuming that code is written in such a way that it validates the provided uuid is already deleted or not\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"// Test 15\r",
+							"pm.test(\"Validate the failed message in response body if uuid is invalid  \", function(){\r",
+							"//assuming that code is written in such a way that it validates the uuid should not accept anything (like special character)\r",
+							"//fail the case with proper response (400 category) if uuid has null value\r",
+							"//status : failed\r",
+							"});\r",
+							"\r",
+							"// Test 16\r",
+							"pm.test(\"Verifying Delete Functionality of API\",function(){\r",
+							"var jsonData=JSON.parse(responseBody);\r",
+							" jsonData.isDeleted=\"true\";   \r",
+							" })\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uuid\": \"9ec60728-477-0b14-4487-aa23-9ad9c034ebac\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://backend.127-0-0-1.sslip.io/Jokes",
+					"protocol": "http",
+					"host": [
+						"backend",
+						"127-0-0-1",
+						"sslip",
+						"io"
+					],
+					"path": [
+						"Jokes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
